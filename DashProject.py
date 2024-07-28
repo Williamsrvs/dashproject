@@ -92,8 +92,7 @@ elif cx_selecao == 'Tratar Planilha':
 
             # Obter nomes das planilhas
             sheet_names = xls.sheet_names
-            st.write(f"Planilha Carregada com Sucesso:)
-
+            st.write('Planilha Carregada com Sucesso':)
            
             # Ler a planilha selecionada
             df = pd.read_excel(xls, sheet_name=sheet_name)
