@@ -1,27 +1,27 @@
 import streamlit as st
 import pandas as pd
 import openpyxl as xl
-import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 
 # Projeto de Análise de Dados em Python
 
 # Carregando meu arquivo de Excel
-arquivo = pd.read_excel('mov_fin.xlsx')
+try:
+    arquivo = pd.read_excel('mov_fin.xlsx', engine='openpyxl')
+except Exception as e:
+    st.error(f"Erro ao carregar o arquivo: {e}")
 
 # Carregando meu Streamlit
 st.header("Apresentação sobre Ciência de Dados")
 st.sidebar.image('LOGO.png')
-st.sidebar.text("""Menu de Navegação do
-Projeto""")
+st.sidebar.text("""Menu de Navegação do Projeto""")
 st.sidebar.markdown("""
 Condominio Village das Fontes, 770 - Benedito Bentes
 Maceió/Al
 Tel.(82) 98863-9394
 dateanalytics@outlook.com
-    """)
-
+""")
 
 rotas = "https://app.powerbi.com/view?r=eyJrIjoiZGYyYzcwMDYtYzZmZC00YjlhLWJjYzQtYmE4MmMyOTc5MTdmIiwidCI6ImY1OGYxNjE2LWZkYWEtNGRhZS1hN2ZjLTc1ODI5YzkxOWE2YSJ9"
 
@@ -37,7 +37,7 @@ st.markdown(
 )
 
 cx_selecao = st.sidebar.selectbox("Selecione uma opção:", [
-    'Home','Apresentação','Tabela', 'Gráficos','Dashboard Roteirização','Tratar Planilha'
+    'Home', 'Apresentação', 'Tabela', 'Gráficos', 'Dashboard Roteirização', 'Tratar Planilha'
 ])
 
 if cx_selecao == 'Tabela':
@@ -52,50 +52,68 @@ if cx_selecao == 'Apresentação':
     st.header("Conheça um pouco da minha vivência profissional")
     st.image('foto.jpg')
     st.markdown(""" 
-Me Chamo Williams Rodrigues, sou pós graduando em Ciência de Big Date Analytics e bacharel em administração de empresas,
-ao logo da minha trajetória profissional sempre gostei da área de tecnológia, já iniciei alguns cursos na área porém por questões do destino,
-precisei parar, tudo mudou quando decidi estudar ADMINISTRAÇÃO DE EMPRESAS, e ai foi um divisor de águas na minha trajetória profissional,
-conheci diversos profissionais gabaritados e renomados em diversas áreas, tive o prazer e felicidade de presidir ativamente como diretor de uma delegação para organização de eventos acadêmicos
-que no qual organizamos excursos e palestras dentro do próprio conselho de Administração CRA/AL, até para fora do estado organizamos eventos, e isso me motivava a cada dia.
+    Me Chamo Williams Rodrigues, sou pós graduando em Ciência de Big Data Analytics e bacharel em administração de empresas,
+    ao longo da minha trajetória profissional sempre gostei da área de tecnologia, já iniciei alguns cursos na área porém por questões do destino,
+    precisei parar, tudo mudou quando decidi estudar ADMINISTRAÇÃO DE EMPRESAS, e aí foi um divisor de águas na minha trajetória profissional,
+    conheci diversos profissionais gabaritados e renomados em diversas áreas, tive o prazer e felicidade de presidir ativamente como diretor de uma delegação para organização de eventos acadêmicos
+    que no qual organizamos excursões e palestras dentro do próprio conselho de Administração CRA/AL, até para fora do estado organizamos eventos, e isso me motivava a cada dia.
 
-Foi ai que tive a brilhante idéia: Organizar, apresentar aulas de Microsoft Excel para graduandos e alunos do ensino médio totalmente de graça, para ajudar no aprendizado e aprimoramento para o mercado de trabalho.
-O projeto foi denominado EXCEL EMPRESARIAL, com aulas voltadas para a prática nas empresas, eu trazia uma forma diferente de treinamento, com uma linguagem mais próxima do aluno e de fácil entendimento.
-Ainda durante a vida acadêmica fui: Palestrante em sustentabilidade, Monitor, Diretor de Delegação e Consultor em Microsoft Excel.
+    Foi aí que tive a brilhante ideia: Organizar, apresentar aulas de Microsoft Excel para graduandos e alunos do ensino médio totalmente de graça, para ajudar no aprendizado e aprimoramento para o mercado de trabalho.
+    O projeto foi denominado EXCEL EMPRESARIAL, com aulas voltadas para a prática nas empresas, eu trazia uma forma diferente de treinamento, com uma linguagem mais próxima do aluno e de fácil entendimento.
+    Ainda durante a vida acadêmica fui: Palestrante em sustentabilidade, Monitor, Diretor de Delegação e Consultor em Microsoft Excel.
 
-Com a base acadêmica consolidada decidi recomeçar a estudar fazer a pós graduação, o que me abriu mais ainda os olhos para a área tecnológica, hoje já desenvolvi diversos projetos em 
-Power BI, em Python em VBA - Access e diversos materiais que foram comercializados para pessoas e empresas.
-atuando como consultor ou instrutor nesta área de dados e apresentações de indicadores.
-atualmente estou trabalhando em diversos projetos de analise de dados, entre eles um em especifico na área de logística para criar, implementar e desenvolver dados de indicadores referente aos clientes,
+    Com a base acadêmica consolidada decidi recomeçar a estudar fazer a pós-graduação, o que me abriu mais ainda os olhos para a área tecnológica, hoje já desenvolvi diversos projetos em 
+    Power BI, em Python, em VBA - Access e diversos materiais que foram comercializados para pessoas e empresas.
+    Atuando como consultor ou instrutor nesta área de dados e apresentações de indicadores.
+    Atualmente estou trabalhando em diversos projetos de análise de dados, entre eles um específico na área de logística para criar, implementar e desenvolver dados de indicadores referentes aos clientes,
 
-A ciência de Dados é uma área que não há limites para o conhecimento nela se aprende: automatizar, melhorar os processos afim de reduzir custos para uma empresa, sempre visando a eficiência a qualidade e a transparência.
-quer conhecer um pouco mais sobre ciência de dados acesse: https://www.ibm.com/br-pt/topics/data-science
-                """)
-#Saiba mais sobre nossos trabalhos:
+    A ciência de Dados é uma área que não há limites para o conhecimento nela se aprende: automatizar, melhorar os processos a fim de reduzir custos para uma empresa, sempre visando a eficiência, a qualidade e a transparência.
+    Quer conhecer um pouco mais sobre ciência de dados acesse: https://www.ibm.com/br-pt/topics/data-science
+    """)
+    # Saiba mais sobre nossos trabalhos:
     st.header("Saiba mais sobre nossos trabalhos:")
-    Whatsapp=st.link_button("Whatsapp",'https://wa.me/5582988639394')
-    Portifolio=st.link_button("Portifólio",'https://wrportifolio.streamlit.app')
-    Linkedin=st.link_button("Linkedin",'https://www.linkedin.com/in/williams-rodrigues-9b350a6a/')
-    Instagram=st.link_button("Instagram",'https://www.instagram.com/williams_rvs85')
+    st.button("Whatsapp", 'https://wa.me/5582988639394')
+    st.button("Portfólio", 'https://wrportifolio.streamlit.app')
+    st.button("LinkedIn", 'https://www.linkedin.com/in/williams-rodrigues-9b350a6a/')
+    st.button("Instagram", 'https://www.instagram.com/williams_rvs85')
    
 
 elif cx_selecao == 'Dashboard Roteirização':
     st.title('Mapeamento e Análise de Dados do Planejamento de Roteirização')
     st.markdown(f'<iframe width="800" height="600" src="{rotas}" frameborder="0" allowfullscreen></iframe>', unsafe_allow_html=True)   
 
-elif  cx_selecao == 'Tratar Planilha':
-   # Carregar a planilha Excel
-    uploaded_file = st.file_uploader("Escolha um arquivo Excel", type="xlsx")
+elif cx_selecao == 'Tratar Planilha':
    
-    # Ler a planilha Excel usando o openpyxl como engine
-    planilha= pd.read_excel(uploaded_file, engine='openpyxl')
+    # Função para carregar e exibir a planilha Excel
+    def load_excel(uploaded_file):
+        try:
+            # Ler todas as planilhas do arquivo Excel
+            xls = pd.ExcelFile(uploaded_file, engine='openpyxl')
 
-    # Remover linhas e colunas vazias
-    planilha.dropna(how='all', inplace=True)  # Remove linhas completamente vazias
-    planilha.dropna(axis=1, how='all', inplace=True)  # Remove colunas completamente vazias
+            # Obter nomes das planilhas
+            sheet_names = xls.sheet_names
+            st.write(f"Planilhas disponíveis: {sheet_names}")
 
-    # Exibir o DataFrame
-    st.dataframe(planilha)
+            # Selecionar planilha
+            sheet_name = st.selectbox("Escolha uma planilha para carregar", sheet_names)
 
+            # Ler a planilha selecionada
+            df = pd.read_excel(xls, sheet_name=sheet_name)
+
+            # Remover linhas e colunas vazias
+            df.dropna(how='all', inplace=True)  # Remove linhas completamente vazias
+            df.dropna(axis=1, how='all', inplace=True)  # Remove colunas completamente vazias
+
+            # Exibir o DataFrame
+            st.dataframe(df)
+        except Exception as e:
+            st.error(f"Erro ao carregar o arquivo: {e}")
+
+    # Carregar a planilha Excel
+    uploaded_file = st.file_uploader("Escolha um arquivo Excel", type="xlsx")
+
+    if uploaded_file is not None:
+        load_excel(uploaded_file)
 
 elif cx_selecao == 'Gráficos':
     # Calculando a soma da coluna "Pago" para Receitas e Despesas
@@ -103,7 +121,6 @@ elif cx_selecao == 'Gráficos':
     despesa = arquivo[arquivo['Tipo'] == 'Despesa']['Pago'].sum()
     total_pago = arquivo['Pago'].sum()
     media_pago = arquivo['Pago'].median()
-
 
     # Calculando o saldo
     saldo = receita - despesa
@@ -159,5 +176,6 @@ elif cx_selecao == 'Gráficos':
     )])
     fig_rosca.update_traces(textinfo='percent+label', marker=dict(line=dict(color='#000000', width=2)))
     st.plotly_chart(fig_rosca)
+
 
 
