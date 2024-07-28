@@ -46,7 +46,6 @@ if cx_selecao == 'Tabela':
 if cx_selecao == 'Home':
     st.header("Projeto de Análise de Dados em Python")
     st.markdown("Este projeto visa demonstrar um projeto de análise de dados referente a uma tabela de movimento financeiro entre receitas e despesas. Observação: Estes dados são fictícios, qualquer necessidade de conhecer um pouco mais sobre a lógica de programação basta entrar em contato.")
-    st.video('video.mp4')
     st.image('dados.png')
 
 if cx_selecao == 'Apresentação':
