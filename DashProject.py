@@ -46,6 +46,7 @@ if cx_selecao == 'Tabela':
 if cx_selecao == 'Home':
     st.header("Projeto de Análise de Dados em Python")
     st.markdown("Este projeto visa demonstrar um projeto de análise de dados referente a uma tabela de movimento financeiro entre receitas e despesas. Observação: Estes dados são fictícios, qualquer necessidade de conhecer um pouco mais sobre a lógica de programação basta entrar em contato.")
+    st.video('video.mp4')
     st.image('dados.png')
 
 if cx_selecao == 'Apresentação':
@@ -82,14 +83,7 @@ elif cx_selecao == 'Dashboard Roteirização':
     st.title('Mapeamento e Análise de Dados do Planejamento de Roteirização')
     st.markdown(f'<iframe width="800" height="600" src="{rotas}" frameborder="0" allowfullscreen></iframe>', unsafe_allow_html=True)   
 
-elif cx_selecao == 'Gráficos':
-    # Calculando a soma da coluna "Pago" para Receitas e Despesas
-    receita = arquivo[arquivo['Tipo'] == 'Receita']['Pago'].sum()
-    despesa = arquivo[arquivo['Tipo'] == 'Despesa']['Pago'].sum()
-    total_pago = arquivo['Pago'].sum()
-    media_pago = arquivo['Pago'].median()
-
-    elif  cx_selecao == 'Tratar Planilha':
+elif  cx_selecao == 'Tratar Planilha':
    # Carregar a planilha Excel
     uploaded_file = st.file_uploader("Escolha um arquivo Excel", type="xlsx")
    
@@ -102,6 +96,15 @@ elif cx_selecao == 'Gráficos':
 
     # Exibir o DataFrame
     st.dataframe(planilha)
+
+
+elif cx_selecao == 'Gráficos':
+    # Calculando a soma da coluna "Pago" para Receitas e Despesas
+    receita = arquivo[arquivo['Tipo'] == 'Receita']['Pago'].sum()
+    despesa = arquivo[arquivo['Tipo'] == 'Despesa']['Pago'].sum()
+    total_pago = arquivo['Pago'].sum()
+    media_pago = arquivo['Pago'].median()
+
 
     # Calculando o saldo
     saldo = receita - despesa
@@ -157,6 +160,5 @@ elif cx_selecao == 'Gráficos':
     )])
     fig_rosca.update_traces(textinfo='percent+label', marker=dict(line=dict(color='#000000', width=2)))
     st.plotly_chart(fig_rosca)
-
 
 
