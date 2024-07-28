@@ -83,7 +83,9 @@ elif cx_selecao == 'Dashboard Roteirização':
     st.markdown(f'<iframe width="800" height="600" src="{rotas}" frameborder="0" allowfullscreen></iframe>', unsafe_allow_html=True)   
 
 elif cx_selecao == 'Tratar Planilha':
-   
+    st.markdown('Limpe suas planilhas e remova colunas vazias e linhas vazias do seu arquivo XLSX')
+    st.header('Neste espaço você poderá tratar suas planilhas para poder economizar tempo.')
+    
     # Função para carregar e exibir a planilha Excel
     def load_excel(uploaded_file):
         try:
