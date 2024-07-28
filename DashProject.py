@@ -37,7 +37,7 @@ st.markdown(
 )
 
 cx_selecao = st.sidebar.selectbox("Selecione uma opção:", [
-    'Home','Apresentação','Tabela', 'Gráficos','Dashboard Roteirização'
+    'Home','Apresentação','Tabela', 'Gráficos','Dashboard Roteirização','Tratar Planilha'
 ])
 
 if cx_selecao == 'Tabela':
@@ -88,6 +88,20 @@ elif cx_selecao == 'Gráficos':
     despesa = arquivo[arquivo['Tipo'] == 'Despesa']['Pago'].sum()
     total_pago = arquivo['Pago'].sum()
     media_pago = arquivo['Pago'].median()
+
+    elif  cx_selecao == 'Tratar Planilha':
+   # Carregar a planilha Excel
+    uploaded_file = st.file_uploader("Escolha um arquivo Excel", type="xlsx")
+   
+    # Ler a planilha Excel usando o openpyxl como engine
+    planilha= pd.read_excel(uploaded_file, engine='openpyxl')
+
+    # Remover linhas e colunas vazias
+    planilha.dropna(how='all', inplace=True)  # Remove linhas completamente vazias
+    planilha.dropna(axis=1, how='all', inplace=True)  # Remove colunas completamente vazias
+
+    # Exibir o DataFrame
+    st.dataframe(planilha)
 
     # Calculando o saldo
     saldo = receita - despesa
@@ -143,4 +157,6 @@ elif cx_selecao == 'Gráficos':
     )])
     fig_rosca.update_traces(textinfo='percent+label', marker=dict(line=dict(color='#000000', width=2)))
     st.plotly_chart(fig_rosca)
+
+
 
